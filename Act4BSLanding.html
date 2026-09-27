@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Landind Page</title>
+    <title>Landing Page</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         body {
@@ -104,6 +104,13 @@
             background-attachment: fixed;
         }
 
+        /* Modified modal specific styling to fit the theme */
+        .modal-content.jjk-theme {
+            background: rgba(15, 15, 15, 0.95);
+            border: 2px solid #b30000;
+            box-shadow: 0 0 30px rgba(179, 0, 0, 0.5);
+        }
+
         #first-layer { background-image: url('https://i.pinimg.com/1200x/45/8b/49/458b49014582ba2ba4a5589b2f7ced13.jpg'); }
         #second-layer { background-image: url('https://i.pinimg.com/1200x/66/17/b8/6617b81950d4461d570d8bb8338b123d.jpg'); }
         #third-layer { background-image: url('https://i.pinimg.com/736x/d3/fd/09/d3fd09d234163e9f21f3dbc93670e1e9.jpg'); }
@@ -145,6 +152,24 @@
             </div>
         </div>
     </nav>
+
+    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content jjk-theme">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title jjk-title m-0" id="welcomeModalLabel" style="font-size: 1.2rem;">System Notification</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <h2 class="text-white fw-bold mb-3">Welcome! <br><span id="userNameDisplay" style="color: #ff3333; text-shadow: 0 0 10px rgba(255, 51, 51, 0.8);"></span></h2>
+                    <p class="jjk-text mb-0">Your cursed energy has been registered.</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center pb-4">
+                    <button type="button" class="btn jjk-btn w-50" data-bs-dismiss="modal">Enter Domain</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="container-fluid p-0">
         <div id="first-layer" class="layer-bg vh-100 d-flex align-items-center">
@@ -198,7 +223,19 @@
         </div>
     </section>
         
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            const username = localStorage.getItem("username") || "Sorcerer";
+            
+            document.getElementById("userNameDisplay").innerText = username;
+
+            const myModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+            myModal.show();
+            
+        });
+    </script>
 </body>
 </html>
